@@ -69,33 +69,71 @@ var total = 0;
 function addToCartList(id) {
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cartList array
+    for (let i = 0; i < products.length; i++) {
+        if(i === id - 1) {
+            cartList.push(products[i]);
+        }
+    }
 }
 
 // Exercise 2
 function cleanCart() {
-
+        cartList = [];
 }
 
 // Exercise 3
 function calculateSubtotals() {
     // 1. Create a for loop on the "cartList" array 
     // 2. Implement inside the loop an if...else or switch...case to add the quantities of each type of product, obtaining the subtotals: subtotalGrocery, subtotalBeauty and subtotalClothes
+    for (let i = 0; i < cartList.length; i++) {
+        switch (cartList[i].type) {
+            case "grocery":
+                subtotal.grocery.value += cartList[i].price;
+                break;
+            case "beauty":
+                subtotal.beauty.value += cartList[i].price;
+                break;
+            case "clothes":
+                subtotal.clothes.value += cartList[i].price;
+                break;
+        }
+    }
 }
 
 // Exercise 4
 function calculateTotal() {
     // Calculate total price of the cart either using the "cartList" array
+    for (let category in subtotal) {
+        total += subtotal[category].value;
+    }
 }
 
 // Exercise 5
 function generateCart() {
     // Using the "cartlist" array that contains all the items in the shopping cart, 
     // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
+    for(let i = 0; i < cartList.length; i++){
+        let index = cart.findIndex(product => product.name === cartList[i].name);
+        if (index > -1) {
+            cart[index].quantity += 1;
+        } else {
+            let newItem = {
+                name: cartList[i].name,
+                price: cartList[i].price,
+                type: cartList[i].type,
+                quantity: 1 
+                //, subtotal: cartList[i].price ????????????????????????????***************???????
+            }
+            cart.push(newItem);
+        }
+    }
+    console.log(cart);
 }
 
 // Exercise 6
 function applyPromotionsCart() {
     // Apply promotions to each item in the array "cart"
+    console.log(cart);
 }
 
 // Exercise 7
