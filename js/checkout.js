@@ -77,9 +77,4 @@ function validate() {
     }
  */
 
-
-
-
-//- La contrasenya ha d'incloure números i lletres.
-
 }
