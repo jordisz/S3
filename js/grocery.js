@@ -116,24 +116,32 @@ function generateCart() {
         let index = cart.findIndex(product => product.name === cartList[i].name);
         if (index > -1) {
             cart[index].quantity += 1;
+            cart[index].subtotal += cart[index].price;
         } else {
             let newItem = {
                 name: cartList[i].name,
                 price: cartList[i].price,
                 type: cartList[i].type,
-                quantity: 1 
-                //, subtotal: cartList[i].price ????????????????????????????***************???????
+                quantity: 1,
+                subtotal: cartList[i].price,
+                subtotalWithDiscount: 0
             }
             cart.push(newItem);
         }
     }
-    console.log(cart);
 }
 
 // Exercise 6
 function applyPromotionsCart() {
     // Apply promotions to each item in the array "cart"
-    console.log(cart);
+    let oilIndex = cart.findIndex(product => product.name === 'cooking oil');
+    let cupcakeMixtureIndex = cart.findIndex(product => product.name === 'Instant cupcake mixture');
+    if(oilIndex > -1  && cart[oilIndex].quantity >= 3){
+        cart[oilIndex].subtotalWithDiscount = cart[oilIndex].quantity * 10;
+    }
+    if(cupcakeMixtureIndex > -1 && cart[cupcakeMixtureIndex].quantity >= 10){
+        cart[cupcakeMixtureIndex].subtotalWithDiscount = cart[cupcakeMixtureIndex].subtotal * 2/3;
+    }
 }
 
 // Exercise 7
