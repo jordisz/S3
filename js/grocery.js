@@ -90,21 +90,19 @@ function calculateSubtotals() {
         switch (cart[i].type) {
             case "grocery":
                 subtotal.grocery.value += cart[i].subtotal;
-                if(cart[i].subtotalWithDiscount !== 0){
+/*
+{subtotal} objects have a "discount" property. We can calculate it this way, if we need to:
+
+                 if(cart[i].subtotalWithDiscount !== 0){
                     subtotal.grocery.discount += (cart[i].subtotal - cart[i].subtotalWithDiscount);
-                }
+                } 
+*/
                 break;
             case "beauty":
                 subtotal.beauty.value += cart[i].subtotal;
-                if(cart[i].subtotalWithDiscount !== 0){
-                    subtotal.beauty.discount += (cart[i].subtotal - cart[i].subtotalWithDiscount);
-                }
                 break;
             case "clothes":
                 subtotal.clothes.value += cart[i].subtotal;
-                if(cart[i].subtotalWithDiscount !== 0){
-                    subtotal.clothes.discount += (cart[i].subtotal - cart[i].subtotalWithDiscount);
-                }
                 break;
         }
     }
@@ -158,7 +156,7 @@ function applyPromotionsCart() {
 // Exercise 7
 function addToCart(id) {
     // 1. Loop for to the array products to get the item to add to cart
-    // 2. Add found product to the cartList array
+    // 2. Add found product to the cart array or update its quantity in case it has been added previously.
     for (let i = 0; i < products.length; i++) {
         if(i === id - 1) {         
             let index = cart.findIndex(product => product.name === products[i].name);   // Look for product index in the cart array
