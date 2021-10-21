@@ -2,7 +2,7 @@
 // Move this variable to a json file and load the data in this js
 var products = [
     {
-        name: 'cooking oil',
+        name: 'Cooking oil',
         price: 10.5,
         type: 'grocery'
     },
@@ -146,7 +146,7 @@ function generateCart() {
 // Exercise 6
 function applyPromotionsCart() {
     // Apply promotions to each item in the array "cart"
-    let oilIndex = cart.findIndex(product => product.name === 'cooking oil');
+    let oilIndex = cart.findIndex(product => product.name === 'Cooking oil');
     let cupcakeMixtureIndex = cart.findIndex(product => product.name === 'Instant cupcake mixture');
     if(oilIndex > -1  && cart[oilIndex].quantity >= 3){
         cart[oilIndex].subtotalWithDiscount = cart[oilIndex].quantity * 10;
@@ -216,7 +216,7 @@ function printCart() {
         for(i = 0; i < cart.length; i++){
             let listItem = document.createElement("li");
 
-            let descriptionQuantityPrice = document.createTextNode(cart[i].name + " x " + cart[i].quantity + " : $" + cart[i].subtotal);
+            let descriptionQuantityPrice = document.createTextNode(cart[i].name + " x " + cart[i].quantity + " : $" + cart[i].subtotal.toFixed(2));
             let button = document.createElement("button");  // Create removeFromChart button
             if(cart[i].quantity > 1){
                 button.classList.add("btn-decrement");
