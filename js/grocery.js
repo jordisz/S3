@@ -80,6 +80,7 @@ function addToCartList(id) {
 function cleanCart() {
         cartList = [];          // We could delete this line if we remove the function addToCartList() (exercise 1)
         cart = [];
+        clearTotals();
 }
 
 // Exercise 3
@@ -89,19 +90,21 @@ function calculateSubtotals() {
     for (let i = 0; i < cart.length; i++) {
         switch (cart[i].type) {
             case "grocery":
-                subtotal.grocery.value += cart[i].subtotal;
-/*
-{subtotal} objects have a "discount" property. We can calculate it this way, if we need to:
-
-                 if(cart[i].subtotalWithDiscount !== 0){
+                if(cart[i].subtotalWithDiscount !== 0){
                     subtotal.grocery.discount += (cart[i].subtotal - cart[i].subtotalWithDiscount);
                 } 
-*/
+                subtotal.grocery.value += cart[i].subtotal;
                 break;
             case "beauty":
+                if(cart[i].subtotalWithDiscount !== 0){
+                    subtotal.beauty.discount += (cart[i].subtotal - cart[i].subtotalWithDiscount);
+                } 
                 subtotal.beauty.value += cart[i].subtotal;
                 break;
             case "clothes":
+                if(cart[i].subtotalWithDiscount !== 0){
+                    subtotal.clothes.discount += (cart[i].subtotal - cart[i].subtotalWithDiscount);
+                } 
                 subtotal.clothes.value += cart[i].subtotal;
                 break;
         }
@@ -112,7 +115,8 @@ function calculateSubtotals() {
 function calculateTotal() {
     // Calculate total price of the cart either using the "cartList" array
     for (let category in subtotal) {
-        total += subtotal[category].value;
+        total += subtotal[category].value - subtotal[category].discount;
+        total = +total.toFixed(2);
     }
 }
 
@@ -146,11 +150,14 @@ function applyPromotionsCart() {
     let cupcakeMixtureIndex = cart.findIndex(product => product.name === 'Instant cupcake mixture');
     if(oilIndex > -1  && cart[oilIndex].quantity >= 3){
         cart[oilIndex].subtotalWithDiscount = cart[oilIndex].quantity * 10;
+    } else if (oilIndex > -1) {
+        cart[oilIndex].subtotalWithDiscount = 0;
     }
     if(cupcakeMixtureIndex > -1 && cart[cupcakeMixtureIndex].quantity >= 10){
-        cart[cupcakeMixtureIndex].subtotalWithDiscount = cart[cupcakeMixtureIndex].subtotal * 2/3;
+        cart[cupcakeMixtureIndex].subtotalWithDiscount = +(cart[cupcakeMixtureIndex].subtotal * 2/3).toFixed(2);
+    } else if (cupcakeMixtureIndex > -1){
+        cart[cupcakeMixtureIndex].subtotalWithDiscount = 0;
     }
-    console.log(cart);
 }
 
 // Exercise 7
@@ -198,4 +205,68 @@ function removeFromCart(id) {
 // Exercise 9
 function printCart() {
     // Fill the shopping cart modal manipulating the shopping cart dom
+    let list = document.querySelector(".list");
+    let totalH3 = document.querySelector(".bill");
+
+    applyPromotionsCart();
+    clearTotals();  // To prevent unwanted increments when closing and reopening the cart modal
+    list.innerHTML = "";
+
+    if(cart.length > 0){
+        for(i = 0; i < cart.length; i++){
+            let listItem = document.createElement("li");
+
+            let descriptionQuantityPrice = document.createTextNode(cart[i].name + " x " + cart[i].quantity + " : $" + cart[i].subtotal);
+            let button = document.createElement("button");  // Create removeFromChart button
+            if(cart[i].quantity > 1){
+                button.classList.add("btn-decrement");
+                button.innerHTML = "-1";
+            } else {
+                button.classList.add("btn-remove");
+                button.innerHTML = "X";
+            }
+            let index = products.findIndex(product => product.name === cart[i].name) + 1;
+            button.onclick = function () {
+                removeFromCart(index);
+                printCart();
+            }
+                    
+            listItem.appendChild(descriptionQuantityPrice);
+            listItem.appendChild(button);
+            list.appendChild(listItem);
+            
+            if(cart[i].subtotalWithDiscount !== 0){             // If product has a discount, print it
+                let difference = cart[i].subtotal - cart[i].subtotalWithDiscount;
+
+                let listDiscount = document.createElement("li");
+                listDiscount.classList.add("discount");         // Maybe style discounts differently
+                listDiscount.appendChild(document.createTextNode(cart[i].name + " discount: -$" + difference));
+                list.appendChild(listDiscount);
+            }
+        }
+
+        calculateSubtotals();
+        calculateTotal();
+        totalH3.innerHTML = "Total: $" + total;
+    } else {
+        totalH3.innerHTML = "Your cart is empty";
+    }
+}
+
+function clearTotals() {
+    subtotal = {
+        grocery: {
+            value: 0, 
+            discount: 0
+        },
+        beauty: {
+            value: 0, 
+            discount: 0
+        },
+        clothes: {
+            value: 0, 
+            discount: 0
+        },
+    };
+    total = 0;
 }
