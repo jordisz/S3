@@ -24,3 +24,38 @@ body{
     right: 0;
     margin-right: 1rem;
 }
+
+.list li {
+    display: flex;
+    flex-direction: column;
+    margin-right: 2em;
+    padding: 0 0 0 .3em;
+}
+
+.list li:nth-child(odd) {
+    background-color: #efefefdd;
+}
+
+.list li:nth-child(even) {
+    background-color: #dfdfdfbb;
+}
+
+.description-price {
+    display: flex;
+    justify-content: space-between;
+}
+
+.discount {
+    display: flex;
+    justify-content: space-between;
+    color: #0000bbdd;
+    font-size: .9rem;
+    padding-left: 1rem;
+}
+
+.btn-decrement {
+    color: #bb0000dd;
+    border: none;
+    background-color: #ffffff00;
+    font-size: .8rem;
+}

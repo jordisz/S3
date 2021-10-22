@@ -209,40 +209,57 @@ function printCart() {
     let totalH3 = document.querySelector(".bill");
 
     applyPromotionsCart();
-    clearTotals();  // To prevent unwanted increments when closing and reopening the cart modal
+    clearTotals();  // Prevent unwanted increments when closing and reopening the cart modal
     list.innerHTML = "";
 
     if(cart.length > 0){
         for(i = 0; i < cart.length; i++){
             let listItem = document.createElement("li");
 
-            let descriptionQuantityPrice = document.createTextNode(cart[i].name + " x " + cart[i].quantity + " : $" + cart[i].subtotal.toFixed(2));
-            let button = document.createElement("button");  // Create removeFromChart button
-            if(cart[i].quantity > 1){
-                button.classList.add("btn-decrement");
-                button.innerHTML = "-1";
-            } else {
-                button.classList.add("btn-remove");
-                button.innerHTML = "X";
+            /* List product description and price */
+            let checkDiscount = "none";                         // If product has a discount, original price style = line-through
+            if(cart[i].subtotalWithDiscount !== 0) {
+                checkDiscount = "line-through";
             }
-            let index = products.findIndex(product => product.name === cart[i].name) + 1;
-            button.onclick = function () {
-                removeFromCart(index);
-                printCart();
-            }
-                    
-            listItem.appendChild(descriptionQuantityPrice);
-            listItem.appendChild(button);
-            list.appendChild(listItem);
-            
+            listItem.innerHTML = "<div class='description-price'>" + cart[i].name + " x " + cart[i].quantity + "<span style='text-decoration: "+ checkDiscount + ";'>$" + cart[i].subtotal.toFixed(2) + "</span></div>";
+
             if(cart[i].subtotalWithDiscount !== 0){             // If product has a discount, print it
                 let difference = cart[i].subtotal - cart[i].subtotalWithDiscount;
 
-                let listDiscount = document.createElement("li");
+                let listDiscount = document.createElement("div");
                 listDiscount.classList.add("discount");         // Maybe style discounts differently
-                listDiscount.appendChild(document.createTextNode(cart[i].name + " discount: -$" + difference));
-                list.appendChild(listDiscount);
+                listDiscount.innerHTML = "Special offer -$" + difference + "<span>$" + cart[i].subtotalWithDiscount.toFixed(2);
+                listItem.appendChild(listDiscount);
             }
+            
+            /* Product increment / decrement buttons */
+            let buttonsDiv = document.createElement("div");
+            let index = products.findIndex(product => product.name === cart[i].name) + 1;
+            
+            let decrementButton = document.createElement("button");  // Create removeFromChart button
+            decrementButton.classList.add("btn-decrement");
+            decrementButton.innerHTML = "-";
+            decrementButton.onclick = function () {
+                removeFromCart(index);
+                printCart();
+            }
+            buttonsDiv.appendChild(decrementButton);
+
+            let buttonsText = document.createElement("span");
+            buttonsText.innerText = "quantity";
+            buttonsDiv.appendChild(buttonsText);
+
+            let incrementButton = document.createElement("button");  // Create removeAddToCart button
+            incrementButton.classList.add("btn-decrement");//****************** */
+            incrementButton.innerHTML = "+";
+            incrementButton.onclick = function () {
+                addToCart(index);
+                printCart();
+            }
+            buttonsDiv.appendChild(incrementButton);
+
+            listItem.appendChild(buttonsDiv);
+            list.appendChild(listItem);
         }
 
         calculateSubtotals();
