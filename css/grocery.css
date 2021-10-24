@@ -1,22 +1,67 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
+
 body{
     font-family: Poppins;
 }
-/* navbar */
+/* navbar antic */
 /* .navbar{
     background-color: rgb(43, 43, 43) !important;
 } */
+.container-fluid {
+    padding: 0;
+}
+
+/* Nav */
 .nav-link{
-    color: rgb(255, 255, 255);
+    color: #f4f4f4;
     font-size: 20px;
     font-weight: bold;
 }
 .nav-link:hover{
     color: white;
 }
+.navbar-brand {
+    margin-left: 2em;
+}
+#navbarNav {
+    margin-right: 2em;
+}
+
 .grocery-img{
     width: 60%;
     margin: 1rem auto;
+}
+
+/* Shop sections */
+section {
+    margin-top: 2em;
+    background-color: #f4f4f4;
+}
+
+.section-header, 
+.section-footer {
+    height: 10vh;
+    display: flex;
+    align-items: center;
+}
+
+.line {
+    flex: 1;
+    height: 3px;
+    background-color: #000;
+}
+
+h2 {
+    padding: 0 2em;
+    text-transform: uppercase;
+}
+
+.card-body {
+    padding-top: 0;
+}
+
+.card-price {
+    font-size: 2rem;
 }
 
 /* List modal */
@@ -88,12 +133,20 @@ body{
     margin-right: .6em;
 }
 
-.container-fluid {
-    padding: 0;
+/* Footer */
+footer {
+    height: 20vh;
+    margin-top: 4em;
+    color: #f4f4f4;
 }
-.test {
-    background-color: white;
+
+footer div {
+    padding-top: 2em;
 }
+
+
+
+
 /*.price{
     position: absolute;
     right: 0;
