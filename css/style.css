@@ -2,3 +2,139 @@
 body{
     font-family: Poppins;
 }
+
+header, main {
+    background: #f4f4f4;
+}
+
+h1 {
+    display: none;
+}
+
+.container-header,
+.container-footer {
+    height: 8vh;
+    display: flex;
+    align-items: center;
+}
+
+.line {
+    flex: 1;
+    height: 3px;
+    background-color: #000;
+}
+
+h2 {
+    padding: 0 1.6em;
+    text-transform: uppercase;
+}
+
+.link-group {
+    display: flex;
+    flex-direction: row;
+    width: 66%;
+    margin: auto;
+}
+@media (max-width: 768px) {
+    .link-group {
+        flex-direction: column;
+    }
+}
+
+.wrapper {
+    display: block;
+    height: 52vh;
+    flex: 1;
+    overflow: hidden;
+
+}
+.link-group a {
+    display: block;
+    height: 52vh;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+.link-group a:hover {
+    transform: scale(1.04);
+    transition: all .5s ease-out;
+}
+
+/* Section images */
+#grocery {
+    background-image: url("../images/grocery-2.jpg");
+}
+#grocery:after{
+    position:absolute;
+    height: 100%;
+    width: 100%;
+    transform: translateY(80%);
+    text-align: center;
+    content:"GROCERY";
+    font-size: 2rem;
+    color: white;
+    background-color: #f18c44ee;
+    opacity: 0;
+ }
+
+#grocery:hover:after{
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+#beauty {
+    background-image: url("../images/beauty-2.jpg");
+}
+#beauty:after{
+    position:absolute;
+    height: 100%;
+    width: 100%;
+    transform: translateY(80%);
+    text-align: center;
+    content:"BEAUTY";
+    font-size: 2rem;
+    color: white;
+    background-color: #f18c44ee;
+    opacity: 0;
+ }
+
+#beauty:hover:after{
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+
+#clothes {
+    background-image: url("../images/clothes-1.jpg");
+}
+#clothes:after{
+    position:absolute;
+    height: 100%;
+    width: 100%;
+    transform: translateY(80%);
+    text-align: center;
+    content:"CLOTHES";
+    font-size: 2rem;
+    color: white;
+    background-color: #f18c44ee;
+    opacity: 0;
+ }
+
+
+#clothes:hover:after{
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+
+/* Footer */
+footer {
+    height: 20vh;
+    margin-top: 4em;
+    color: #f4f4f4;
+}
+
+footer div {
+    padding-top: 2em;
+}
