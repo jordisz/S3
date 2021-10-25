@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
 
 body{
     font-family: Poppins;
@@ -11,6 +12,22 @@ body{
     padding: 0;
 }
 
+h1 {
+    background-color: #f4f4f4;
+}
+
+h1 span {
+    font-family: 'Yeseva One', cursive;
+    display: inline-block;
+    animation-name: h1anim;
+    animation-duration: .4s;
+    animation-iteration-count: 2;
+}
+
+@keyframes h1anim {
+    50% {transform: translatey(-4px);}
+}
+
 /* Nav */
 .nav-link{
     color: #f4f4f4;
@@ -21,10 +38,10 @@ body{
     color: white;
 }
 .navbar-brand {
-    margin-left: 2em;
+    margin-left: 1em;
 }
 #navbarNav {
-    margin-right: 2em;
+    margin-right: 1.5em;
 }
 
 .grocery-img{
@@ -52,17 +69,44 @@ section {
 }
 
 h2 {
-    padding: 0 2em;
+    padding: 0 1.6em;
     text-transform: uppercase;
 }
 
-.card-body {
-    padding-top: 0;
+.card-promo {
+    color: #0000bbdd;
+    font-size: .8rem;
+    height: .8rem;
 }
+
 
 .card-price {
     font-size: 2rem;
 }
+
+.card-buy button span {
+    padding-right: 6px;
+    display: none;
+}
+
+@media (min-width: 1400px) {
+    .card-buy button span {
+        display: inline;
+    }
+}
+
+@media (max-width: 768px) {
+    .card-buy button span {
+        display: inline;
+    }
+}
+
+@media (max-width: 420px) {
+    .card-buy button span {
+        display: none;
+    }
+}
+
 
 /* List modal */
 .list li {
