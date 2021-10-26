@@ -3,6 +3,7 @@ body{
     font-family: Poppins;
 }
 
+/* header */
 header, main {
     background: #f4f4f4;
 }
@@ -12,9 +13,16 @@ h1 {
 }
 
 header img {
-    animation-name: h1anim;
-    animation-duration: .4s;
-    animation-iteration-count: 2;
+    -webkit-animation-name: h1anim;
+            animation-name: h1anim;
+    -webkit-animation-duration: .4s;
+            animation-duration: .4s;
+    -webkit-animation-iteration-count: 2;
+            animation-iteration-count: 2;
+}
+
+@-webkit-keyframes h1anim {
+    50% {transform: translatey(-4px);}
 }
 
 @keyframes h1anim {
@@ -34,6 +42,7 @@ header img {
     background-color: #000;
 }
 
+/* links */
 h2 {
     padding: 0 1.6em;
     text-transform: uppercase;
@@ -71,7 +80,7 @@ h2 {
     transition: all .5s ease-out;
 }
 
-/* Section images */
+/* section images */
 #grocery {
     background-image: url("../images/grocery-2.jpg");
 }
@@ -138,7 +147,7 @@ h2 {
 }
 
 
-/* Footer */
+/* footer */
 footer {
     height: 20vh;
     margin-top: 4em;

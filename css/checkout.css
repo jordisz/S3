@@ -8,6 +8,7 @@ body {
     padding: 0;
 }
 
+/* nav */
 .navbar-brand {
     margin-left: 1em;
 }
@@ -26,6 +27,7 @@ body {
     padding-right: .6rem;
 }
 
+/* header */
 header {
     height: 10vh;
     display: flex;
@@ -44,6 +46,7 @@ h1 {
     text-transform: uppercase;
 }
 
+/* icons */
 @media (max-width: 430px) {
     .slide h2 i {
         display: block;
@@ -55,8 +58,14 @@ h1 {
 }
 
 .slide:nth-child(odd) {
-    animation-name: appearL;
-    animation-duration: 1s;
+    -webkit-animation-name: appearL;
+            animation-name: appearL;
+    -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+}
+
+@-webkit-keyframes appearL {
+    from {transform: translateX(-3000px);}
 }
 
 @keyframes appearL {
@@ -64,14 +73,21 @@ h1 {
 }
 
 .slide:nth-child(even) {
-    animation-name: appearR;
-    animation-duration: 1s;
+    -webkit-animation-name: appearR;
+            animation-name: appearR;
+    -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+}
+
+@-webkit-keyframes appearR {
+    from {transform: translateX(3000px);}
 }
 
 @keyframes appearR {
     from {transform: translateX(3000px);}
 }
 
+/* form */
 form {
     background-color: #f4f4f4;
 }
@@ -93,7 +109,7 @@ form {
     color: red;
 }
 
-/* Footer */
+/* footer */
 footer {
     height: 20vh;
     margin-top: 4em;

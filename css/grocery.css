@@ -12,22 +12,6 @@ body{
     padding: 0;
 }
 
-h1 {
-    background-color: #f4f4f4;
-}
-
-h1 span {
-    font-family: 'Yeseva One', cursive;
-    display: inline-block;
-    animation-name: h1anim;
-    animation-duration: .4s;
-    animation-iteration-count: 2;
-}
-
-@keyframes h1anim {
-    50% {transform: translatey(-4px);}
-}
-
 /* Nav */
 .nav-link{
     color: #f4f4f4;
@@ -53,8 +37,31 @@ h1 span {
     transform: translate(-1rem, -1.1rem);
 }
 
+/* h1 */
+h1 {
+    background-color: #f4f4f4;
+}
 
-/* Shop sections */
+h1 span {
+    font-family: 'Yeseva One', cursive;
+    display: inline-block;
+    -webkit-animation-name: h1anim;
+            animation-name: h1anim;
+    -webkit-animation-duration: .4s;
+            animation-duration: .4s;
+    -webkit-animation-iteration-count: 2;
+            animation-iteration-count: 2;
+}
+
+@-webkit-keyframes h1anim {
+    50% {transform: translatey(-4px);}
+}
+
+@keyframes h1anim {
+    50% {transform: translatey(-4px);}
+}
+
+/* shop sections */
 section {
     margin-top: 2em;
     background-color: #f4f4f4;
@@ -118,7 +125,7 @@ h2 {
 }
 
 
-/* List modal */
+/* list modal */
 .list li {
     display: flex;
     flex-direction: column;
@@ -187,7 +194,7 @@ h2 {
     margin-right: .6em;
 }
 
-/* Footer */
+/* footer */
 footer {
     height: 20vh;
     margin-top: 4em;
