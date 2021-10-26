@@ -11,6 +11,16 @@ h1 {
     display: none;
 }
 
+header img {
+    animation-name: h1anim;
+    animation-duration: .4s;
+    animation-iteration-count: 2;
+}
+
+@keyframes h1anim {
+    50% {transform: translatey(-4px);}
+}
+
 .container-header,
 .container-footer {
     height: 8vh;
