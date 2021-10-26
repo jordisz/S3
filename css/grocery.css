@@ -43,11 +43,16 @@ h1 span {
 #navbarNav {
     margin-right: 1.5em;
 }
-
-.grocery-img{
-    width: 60%;
-    margin: 1rem auto;
+#cart i {
+    padding-left: .4rem;
 }
+#cartNumber {
+    display: inline-block;
+    font-size: .8rem;
+    color: #f18c44;
+    transform: translate(-1rem, -1.1rem);
+}
+
 
 /* Shop sections */
 section {
@@ -71,6 +76,11 @@ section {
 h2 {
     padding: 0 1.6em;
     text-transform: uppercase;
+}
+
+.grocery-img{
+    width: 60%;
+    margin: 1rem auto;
 }
 
 .card-promo {

@@ -183,6 +183,7 @@ function addToCart(id) {
             }
         }
     }
+    showCartNumber();
 }
 
 // Exercise 8
@@ -200,6 +201,7 @@ function removeFromCart(id) {
             }
         }
     }
+    showCartNumber();
 }
 
 // Exercise 9
@@ -289,4 +291,10 @@ function clearTotals() {
         },
     };
     total = 0;
+}
+
+function showCartNumber() {
+    let span = document.getElementById("cartNumber");
+    let cartNumber = cart.reduce((previousValue, currentValue) => previousValue + currentValue.quantity, 0);
+    span.innerText = cartNumber;
 }
