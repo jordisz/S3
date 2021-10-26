@@ -76,5 +76,4 @@ function validate() {
         errorPhone.style.display="inline";
     }
  */
-
 }
