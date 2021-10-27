@@ -29,6 +29,9 @@ function validate() {
     } else if(!firstName.value.match(letters)) {
         firstName.classList.add("invalid");
         errorFirstName.style.display="inline";
+    } else {
+        firstName.classList.remove("invalid");
+        errorFirstName.style.display="none";
     }
 
     if(lastName.value.length < 3){
@@ -38,6 +41,9 @@ function validate() {
     } else if(!lastName.value.match(letters)) {
         lastName.classList.add("invalid");
         errorLastName.style.display="inline";
+    } else {
+        lastName.classList.remove("invalid");
+        errorLastName.style.display="none";
     }
 
     if(email.value.length < 3){
@@ -47,6 +53,9 @@ function validate() {
     } else if(email.validity.typeMismatch) {
         email.classList.add("invalid");
         errorEmail.style.display="inline";
+    } else {
+        email.classList.remove("invalid");
+        errorEmail.style.display="none";
     }
 
     if(password.value.length < 3){
@@ -54,21 +63,30 @@ function validate() {
         errorPassword.innerHTML = "Password must be at least 3 characters"
         errorPassword.style.display="inline";
     } else if(!password.value.match(/\d/) || !password.value.match(/[A-Z]/i)) {
-        lastName.classList.add("invalid");
+        password.classList.add("invalid");
         errorPassword.style.display="inline";
+    } else {
+        password.classList.remove("invalid");
+        errorPassword.style.display="none";
     }
 
     if(address.value.length < 3){
         address.classList.add("invalid");
         errorAddress.innerHTML = "Address must be at least 3 numbers"
         errorAddress.style.display="inline";
-    } 
+    } else {
+        address.classList.remove("invalid");
+        errorAddress.style.display="none";
+    }
 
     if(phone.value.length < 3){
         phone.classList.add("invalid");
         errorPhone.innerHTML = "Phone must be at least 3 numbers"
         errorPhone.style.display="inline";
-    } 
+    } else {
+        phone.classList.remove("invalid");
+        errorPhone.style.display="none";
+    }
  /* 
     Not necessary, since input type="number" already covers it:
     else if(!phone.value.match(numbers)) {            
